@@ -1,0 +1,35 @@
+{
+  "labDentalistApp": {
+    "factura": {
+      "home": {
+        "title": "Bill",
+        "intervencion": "Interventions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Bill",
+        "createOrEditLabel": "Create or edit a Bill",
+        "notFound": "No Bills found"
+      },
+      "created": "A new Bill is created with identifier {{ param }}",
+      "updated": "A Bill is updated with identifier {{ param }}",
+      "deleted": "A Bill is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bill {{ id }}?"
+      },
+      "detail": {
+        "title": "Bill"
+      },
+      "id": "ID",
+      "numeroFactura": "Bill Number",
+      "fechaEmision": "Date of issue",
+      "tipoPago": "Payment type",
+      "fechaVencimiento": "Expiration date",
+      "descripcion": "Descripcion",
+      "subtotal": "Pago a plazos",
+      "total": "Total",
+      "importePagado": "Amount paid",
+      "importeAPagar": "Amount to pay",
+      "operaciones": "Operations",
+      "cliente": "Patient"
+    }
+  }
+}

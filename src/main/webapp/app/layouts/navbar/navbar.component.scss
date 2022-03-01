@@ -1,0 +1,256 @@
+@import '~bootstrap/scss/functions';
+@import '~bootswatch/dist/minty/variables';
+@import '~bootstrap/scss/variables';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css');
+
+/* ==========================================================================
+Navbar
+========================================================================== */
+
+.navbar-version {
+  font-size: 0.65em;
+  color: $navbar-dark-color;
+}
+
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+
+.navbar {
+  padding: 0.2rem 1rem;
+  background-color: #fbe4a3;
+  .dropdown-item.active,
+  .dropdown-item.active:focus,
+  .dropdown-item.active:hover {
+    background-color: #f3969a;
+  }
+
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+    }
+  }
+
+  a.nav-link {
+    font-weight: 400;
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+
+/**********************    NUEVOS CAMBIOS         ****************************/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #78c2ad;
+  --first-color-light: #d7d3e7;
+  --white-color: #fff;
+  --body-font: 'Nunito', sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 3rem 0 0 0;
+  padding: 0 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  transition: 0.5s;
+}
+
+a {
+  text-decoration: none;
+}
+
+.icon_color_white {
+  color: white;
+  font-size: 20px;
+}
+
+.color_light {
+  color: rgba(230, 230, 230, 0.9);
+  font-weight: bold;
+}
+
+.icon_intervencion {
+  color: rgba(230, 230, 230, 0.8);
+  font-size: 15px;
+}
+
+.home_icon_size {
+  font-size: 18px;
+}
+
+.header {
+  width: 100%;
+  height: 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background-color: #fff;
+  z-index: 100;
+  transition: 0.5s;
+}
+
+.header_img {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.header_img img {
+  width: 40px;
+}
+
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: -30%;
+  width: 68px;
+  height: 100vh;
+  background-color: #065893;
+  padding: 0.5rem 1rem 0 0;
+  transition: 0.5s;
+  z-index: 100;
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.nav_logo,
+.nav_link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.nav_logo {
+  margin-bottom: 2rem;
+}
+
+.nav_logo-name {
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav_link {
+  position: relative;
+  color: #d7d3e7;
+  margin-bottom: 0.8rem;
+  transition: 0.3s;
+}
+
+.nav_link:hover {
+  color: #fff;
+}
+
+.icon_account_padding {
+  padding: 0 0.8rem 0 0;
+}
+
+.nav_icon {
+  font-size: 1.25rem;
+}
+
+.show {
+  left: 0;
+}
+
+.body-pd {
+  padding-left: calc(68px + 1rem);
+}
+
+.active {
+  color: #fff;
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 32px;
+  background-color: #fff;
+}
+
+.height-100 {
+  height: 100vh;
+}
+
+@media screen and (min-width: 300px) {
+  body {
+    margin: calc(3rem + 1rem) 0 0 0;
+    padding-left: calc(68px + 2rem);
+  }
+
+  .header {
+    height: calc(3rem + 1rem);
+    padding: 0 2rem 0 calc(68px + 2rem);
+  }
+
+  .header_img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header_img img {
+    width: 45px;
+  }
+
+  .l-navbar {
+    left: 0;
+    padding: 1rem 1rem 0 0;
+  }
+
+  .show {
+    width: calc(68px + 156px);
+  }
+
+  .body-pd {
+    padding-left: calc(68px + 188px);
+  }
+}
+
+// Para que se vea todo el navbar al hacer hover
+
+.main-menu2:hover,
+nav.main-menu.expanded {
+  width: 12rem;
+  overflow: visible;
+}
+
+.span_hover {
+  color: #d7d3e7;
+}
+
+.span_hover:hover {
+  color: #fff;
+}

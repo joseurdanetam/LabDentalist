@@ -1,0 +1,88 @@
+<div class="row justify-content-end">
+  <div class="col-11">
+    <h2 id="page-heading" data-cy="HistorialHeading">
+      <span jhiTranslate="labDentalistApp.historial.home.title">Historial</span>
+
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span jhiTranslate="labDentalistApp.historial.home.refreshListLabel">Refresh List</span>
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-historial"
+          [routerLink]="['/historial/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span jhiTranslate="labDentalistApp.historial.home.createLabel"> Create a new Historial </span>
+        </button>
+      </div>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="historials?.length === 0">
+      <span jhiTranslate="labDentalistApp.historial.home.notFound">No historials found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="historials && historials.length > 0">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+            <th scope="col" jhiSortBy="cliente.id" class="text-center">
+              <span jhiTranslate="labDentalistApp.historial.cliente">Cliente</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let historial of historials; trackBy: trackId" data-cy="entityTable">
+            <td class="text-center">
+              <div *ngIf="historial.cliente">
+                <a [routerLink]="['/cliente', historial.cliente?.id, 'view']">
+                  <span class="h5 font-weight-bold"
+                    >{{ historial.cliente.nombre }} {{ historial.cliente.apellido }} - {{ historial.cliente?.dni }}</span
+                  >
+                </a>
+              </div>
+            </td>
+            <td class="text-right">
+              <button
+                type="submit"
+                [routerLink]="['/historial', historial.id, 'view']"
+                class="btn btn-info btn-sm btn-block"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="historials && historials.length > 0">
+      <div class="row justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="row justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="ngbPaginationPage"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

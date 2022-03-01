@@ -1,0 +1,210 @@
+<div class="l-navbar main-menu2" id="nav-bar">
+  <nav class="nav">
+    <ul class="navbar-nav">
+      <li>
+        <a routerLink="home" class="nav_logo">
+          <fa-icon icon="tooth" class="icon_color_white"></fa-icon><span class="nav_logo-name">LabDentalist</span>
+        </a>
+      </li>
+
+      <div class="nav_list d-flex flex-column justify-content-around" [ngSwitch]="account !== null">
+        <li *jhiHasAnyAuthority="'ROLE_USER'" routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav_link">
+            <fa-icon icon="home" class="color_light home_icon_size"></fa-icon>
+            <span jhiTranslate="global.menu.home" class="nav_name">Home</span>
+          </a>
+        </li>
+
+        <li *jhiHasAnyAuthority="'ROLE_USER'" routerLink="cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav_link" routerLink="cliente" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+            <fa-icon icon="search" class="color_light"></fa-icon>
+            <span jhiTranslate="global.menu.entities.paciente" class="nav_name">Paciente</span>
+          </a>
+        </li>
+
+        <li *jhiHasAnyAuthority="'ROLE_USER'" routerLink="cita" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="cita" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav_link">
+            <fa-icon icon="calendar-alt" class="color_light"></fa-icon>
+            <span jhiTranslate="global.menu.entities.cita" class="nav_name">Citas</span>
+          </a>
+        </li>
+
+        <li *jhiHasAnyAuthority="'ROLE_USER'" routerLink="historial" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="historial" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav_link">
+            <fa-icon icon="history" class="color_light"></fa-icon>
+            <span jhiTranslate="global.menu.entities.historial" class="nav_name">Historial</span>
+          </a>
+        </li>
+
+        <li *jhiHasAnyAuthority="'ROLE_USER'" routerLink="factura" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a
+            class="dropdown-item"
+            routerLink="factura"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav_link"
+          >
+            <fa-icon icon="file-invoice-dollar" class="color_light ml-1"></fa-icon>
+            <span jhiTranslate="global.menu.entities.factura" class="nav_name">Facturas</span>
+          </a>
+        </li>
+
+        <!--- EL COMPONENTE INTERVENCIONES SOLO LO PUEDE VER ADMIN--->
+        <li
+          *jhiHasAnyAuthority="'ROLE_ADMIN'"
+          routerLink="intervencion"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav_link"
+        >
+          <a id="admin-menu" data-cy="adminMenu" class="pt-0">
+            <fa-icon icon="teeth-open" class="color_light pr-2"></fa-icon>
+            <span jhiTranslate="global.menu.entities.intervencion" class="nav_name span_hover">Intervención</span>
+          </a>
+        </li>
+
+        <!--- RECETAS SOLO PUEDE VER ADMIN Y PROFESIONAL--->
+        <li
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROFESSIONAL']"
+          routerLink="receta"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav_link"
+        >
+          <a id="admin-menu" data-cy="adminMenu" class="pt-0">
+            <fa-icon icon="capsules" class="color_light pr-2"></fa-icon>
+            <span jhiTranslate="global.menu.entities.receta" class="nav_name span_hover">Receta</span>
+          </a>
+        </li>
+        <!--- FIN: RECETAS SOLO PUEDE VER ADMIN Y PROFESIONAL--->
+
+        <!-- IDIOMAS -->
+        <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" *ngIf="languages && languages.length > 1" class="nav_link">
+          <a class="nav-link dropdown-toggle pt-0" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
+            <span>
+              <fa-icon icon="flag" class="color_light pr-2"></fa-icon>
+              <span jhiTranslate="global.menu.language" class="nav_name span_hover">Language</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
+            <li *ngFor="let language of languages">
+              <a
+                class="dropdown-item"
+                [jhiActiveMenu]="language"
+                href="javascript:void(0);"
+                (click)="changeLanguage(language); collapseNavbar()"
+                >{{ language | findLanguageFromKey }}</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- ACCOUNT-->
+
+        <li
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav_link"
+        >
+          <a class="pt-0" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
+            <span *ngIf="!account?.imageUrl">
+              <fa-icon icon="user" class="color_light icon_account_padding"></fa-icon>
+              <span jhiTranslate="global.menu.account.main" class="nav_name span_hover">Account</span>
+            </span>
+            <span *ngIf="account?.imageUrl">
+              <img [src]="account!.imageUrl" class="profile-image rounded-circle" alt="Avatar" />
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+            <li *ngSwitchCase="true">
+              <a
+                class="dropdown-item"
+                routerLink="account/settings"
+                routerLinkActive="active"
+                (click)="collapseNavbar()"
+                data-cy="settings"
+              >
+                <fa-icon icon="wrench" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.settings">Settings</span>
+              </a>
+            </li>
+            <li *ngSwitchCase="true">
+              <a
+                class="dropdown-item"
+                routerLink="account/password"
+                routerLinkActive="active"
+                (click)="collapseNavbar()"
+                data-cy="passwordItem"
+              >
+                <fa-icon icon="lock" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.password">Password</span>
+              </a>
+            </li>
+
+            <li *ngSwitchCase="false">
+              <a class="dropdown-item" (click)="login()" id="login" data-cy="login">
+                <fa-icon icon="sign-in-alt" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.login">Sign in</span>
+              </a>
+            </li>
+            <li *ngSwitchCase="false">
+              <a
+                class="dropdown-item"
+                routerLink="account/register"
+                routerLinkActive="active"
+                (click)="collapseNavbar()"
+                data-cy="register"
+              >
+                <fa-icon icon="user-plus" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.register">Register</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- FIN ACCOUNT-->
+
+        <!---  ADMINISTRACION   --->
+        <li
+          *jhiHasAnyAuthority="'ROLE_ADMIN'"
+          ngbDropdown
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav_link"
+        >
+          <a ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu" class="pt-0">
+            <fa-icon icon="users-cog" class="color_light pr-2"></fa-icon>
+            <span jhiTranslate="global.menu.admin.main" class="nav_name span_hover">Administration</span>
+          </a>
+          <!--LISTAS DESPLEGABLES DE ADMINISTRACION -->
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+            <li>
+              <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
+                <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.admin.userManagement">User management</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" routerLink="admin/metrics" routerLinkActive="active" (click)="collapseNavbar()">
+                <fa-icon icon="tachometer-alt" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.admin.metrics">Metrics</span>
+              </a>
+            </li>
+          </ul>
+          <!--FIN: LISTAS DESPLEGABLES DE ADMINISTRACION -->
+        </li>
+        <!---  FIN ADMINISTRACION   --->
+        <li *ngSwitchCase="true">
+          <a class="nav_link pt-5" (click)="logout()" id="logout" data-cy="logout">
+            <i class="bx bx-log-out nav_icon"></i>
+            <span jhiTranslate="global.menu.account.logout" class="nav_name">Salir</span>
+          </a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+</div>

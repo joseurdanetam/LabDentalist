@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cliente">
+      <h2 data-cy="clienteDetailsHeading"><span jhiTranslate="labDentalistApp.cliente.detail.title">Cliente</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cliente.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ cliente.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.apellido">Apellido</span></dt>
+        <dd>
+          <span>{{ cliente.apellido }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.dni">Dni</span></dt>
+        <dd>
+          <span>{{ cliente.dni }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.sexo">Sexo</span></dt>
+        <dd>
+          <span>{{ cliente.sexo }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.edad">Edad</span></dt>
+        <dd>
+          <span>{{ cliente.edad | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.email">Email</span></dt>
+        <dd>
+          <span>{{ cliente.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.telefono">Telefono</span></dt>
+        <dd>
+          <span>{{ cliente.telefono }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.direccion">Direccion</span></dt>
+        <dd>
+          <span>{{ cliente.direccion }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.cliente.observacion">Observacion</span></dt>
+        <dd>
+          <span>{{ cliente.observacion }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cliente', cliente.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

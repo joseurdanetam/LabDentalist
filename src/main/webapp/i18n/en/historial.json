@@ -1,0 +1,24 @@
+{
+  "labDentalistApp": {
+    "historial": {
+      "home": {
+        "title": "Historials",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Historial",
+        "createOrEditLabel": "Create or edit a Historial",
+        "notFound": "No Historials found"
+      },
+      "created": "A new Historial is created with identifier {{ param }}",
+      "updated": "A Historial is updated with identifier {{ param }}",
+      "deleted": "A Historial is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Historial {{ id }}?"
+      },
+      "detail": {
+        "title": "Historial"
+      },
+      "id": "ID",
+      "cliente": "Client"
+    }
+  }
+}

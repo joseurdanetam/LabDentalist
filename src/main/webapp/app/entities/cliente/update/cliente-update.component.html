@@ -1,0 +1,150 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate="false" (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cliente-heading" data-cy="ClienteCreateUpdateHeading" jhiTranslate="labDentalistApp.cliente.home.createOrEditLabel">
+        Create or edit a Cliente
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.nombre" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+            <div
+              *ngIf="editForm.controls['nombre'].invalid && (editForm.controls['nombre'].dirty || editForm.controls['nombre'].touched)"
+              class="alert alert-danger float-start"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> El nombre debe contener de 3 a 50 carácteres.
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.apellido" for="field_apellido">Apellido</label>
+            <input type="text" class="form-control" name="apellido" id="field_apellido" data-cy="apellido" formControlName="apellido" />
+            <div
+              *ngIf="
+                editForm.controls['apellido'].invalid && (editForm.controls['apellido'].dirty || editForm.controls['apellido'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> El apellido debe contener de 3 a 50 carácteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.dni" for="field_dni">DNI</label>
+            <input type="text" class="form-control" name="dni" id="field_dni" data-cy="dni" formControlName="dni" />
+            <div
+              *ngIf="editForm.controls['dni'].invalid && (editForm.controls['dni'].dirty || editForm.controls['dni'].touched)"
+              class="alert alert-danger"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> El DNI debe contener 9 carácteres.
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.sexo" for="field_sexo">Sexo</label>
+            <select class="form-control" name="sexo" id="field_sexo" data-cy="sexo" formControlName="sexo">
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.edad" for="field_edad">Fecha de Nacimiento</label>
+            <div class="d-flex">
+              <input
+                id="field_edad"
+                data-cy="edad"
+                type="date"
+                class="form-control"
+                name="edad"
+                formControlName="edad"
+                placeholder="YYYY-MM-DD"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+            <div
+              *ngIf="editForm.controls['email'].invalid && (editForm.controls['email'].dirty || editForm.controls['email'].touched)"
+              class="alert alert-danger"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> El email debe de contener una direccion válida.
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.telefono" for="field_telefono">Telefono</label>
+            <input type="number" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+            <div
+              *ngIf="
+                editForm.controls['telefono'].invalid && (editForm.controls['telefono'].dirty || editForm.controls['telefono'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> El telefono debe contener 9 números.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.direccion" for="field_direccion">Direccion</label>
+            <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+            <div
+              *ngIf="
+                editForm.controls['direccion'].invalid && (editForm.controls['direccion'].dirty || editForm.controls['direccion'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> La direccion debe contener de 5 a 60 carácteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.cliente.observacion" for="field_observacion">Observacion</label>
+            <textarea
+              class="form-control"
+              name="observacion"
+              id="field_observacion"
+              data-cy="observacion"
+              formControlName="observacion"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

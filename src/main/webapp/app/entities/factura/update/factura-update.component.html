@@ -1,0 +1,219 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-factura-heading" data-cy="FacturaCreateUpdateHeading" jhiTranslate="labDentalistApp.factura.home.createOrEditLabel">
+        Create a Factura
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row">
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.factura.numeroFactura" for="field_numeroFactura"
+              >Numero de factura</label
+            >
+            <div class="input-group">
+              <div class="input-group-prepend"></div>
+              <input
+                type="text"
+                class="form-control"
+                name="numeroFactura"
+                id="field_numeroFactura"
+                data-cy="numeroFactura"
+                formControlName="numeroFactura"
+                [readonly]="true"
+                ngModel="{{ random }}"
+              />
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.factura.fechaEmision" for="field_fechaEmision"
+              >Fecha Emision</label
+            >
+            <div class="input-group">
+              <div class="input-group-prepend"></div>
+              <input
+                id="field_fechaEmision"
+                data-cy="fechaEmision"
+                type="date"
+                class="form-control"
+                name="fechaEmision"
+                formControlName="fechaEmision"
+                placeholder="YYYY-MM-DD"
+                [readonly]="true"
+              />
+            </div>
+          </div>
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.factura.fechaVencimiento" for="field_fechaVencimiento"
+              >Fecha de Vencimiento</label
+            >
+            <div class="d-flex">
+              <input
+                id="field_fechaVencimiento"
+                data-cy="fechaVencimiento"
+                type="date"
+                class="form-control"
+                name="fechaVencimiento"
+                formControlName="fechaVencimiento"
+                placeholder="YYYY-MM-DD"
+                [readonly]="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.factura.cliente" for="field_cliente">Factura a</label>
+
+            <select class="form-control" id="field_cliente" data-cy="cliente" name="cliente" formControlName="cliente">
+              <option [ngValue]="null"></option>
+              <option
+                [ngValue]="clienteOption.id === editForm.get('cliente')!.value?.id ? editForm.get('cliente')!.value : clienteOption"
+                *ngFor="let clienteOption of clientesSharedCollection; trackBy: trackClienteById"
+              >
+                {{ clienteOption.dni }} {{ clienteOption.apellido }}, {{ clienteOption.nombre }}
+              </option>
+            </select>
+            <div
+              *ngIf="editForm.controls['cliente'].invalid && (editForm.controls['cliente'].dirty || editForm.controls['cliente'].touched)"
+              class="alert alert-danger float-start"
+            >
+              <fa-icon icon="exclamation-triangle"></fa-icon> No se ha seleccionado ningún cliente.
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.factura.tipoPago" for="field_tipoPago">Tipo Pago</label>
+            <div class="input-group">
+              <div class="input-group-prepend"></div>
+              <select class="form-control col" name="tipoPago" id="field_tipoPago" data-cy="tipoPago" formControlName="tipoPago">
+                <option>Efectivo</option>
+                <option>Tarjeta</option>
+              </select>
+              <div
+                *ngIf="
+                  editForm.controls['tipoPago'].invalid && (editForm.controls['tipoPago'].dirty || editForm.controls['tipoPago'].touched)
+                "
+                class="alert alert-danger float-start"
+              >
+                <fa-icon icon="exclamation-triangle"></fa-icon> No se ha seleccionado ningún tipo de pago.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-control-label" for="field_pagoPlazos" class="text-middle">¿Pago a plazos?</label>
+            <div class="input-group">
+              <div></div>
+              <div>
+                <input type="radio" id="mes1" name="mes3" class="mr-1" (click)="subPlazo(1)" checked />
+                <label class="mr-4">1</label>
+                <input type="radio" id="mes3" name="mes3" class="mr-1" (click)="subPlazo(3)" />
+                <label class="mr-4">3</label>
+                <input type="radio" id="mes6" name="mes3" class="mr-1" (click)="subPlazo(6)" />
+                <label class="mr-4">6</label>
+                <input type="radio" id="mes12" name="mes3" class="mr-1" (click)="subPlazo(12)" />
+                <label class="mr-4">12</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label class="form-control-label" jhiTranslate="labDentalistApp.factura.home.intervencion" for="field_titulo"
+              >Intervenciones</label
+            ><ng-multiselect-dropdown
+              [settings]="dropdownSettings"
+              formControlName="intervenciones"
+              [placeholder]="'Selecciona'"
+              [data]="intervencionesSharedCollection"
+              [(ngModel)]="selectedItems"
+              (onSelect)="cambiarValor($event)"
+              (onSelectAll)="cambiarValorAll($event)"
+              (onDeSelect)="quitarValor($event)"
+              (onDeSelectAll)="quitarValorAll()"
+            >
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-6">
+          <label
+            class="form-control-label"
+            jhiTranslate="labDentalistApp.factura.subtotal"
+            for="field_subtotal"
+            (onDeSelectAll)="quitarValorAll()"
+            >Pago a plazos</label
+          >
+          <div class="input-group">
+            <div class="input-group-prepend"></div>
+            <input
+              type="number"
+              class="form-control"
+              name="subtotal"
+              id="field_subtotal"
+              data-cy="subtotal"
+              formControlName="subtotal"
+              readonly="true"
+            />
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label class="form-control-label" jhiTranslate="labDentalistApp.factura.total" for="field_total">Total</label>
+          <div class="input-group">
+            <div class="input-group-prepend"></div>
+            <input
+              type="number"
+              class="form-control"
+              name="total"
+              id="field_total"
+              data-cy="total"
+              formControlName="total"
+              value="0"
+              readonly="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label class="form-control-label" jhiTranslate="labDentalistApp.factura.descripcion" for="field_decripcion">Descripcion</label>
+          <textarea
+            class="form-control"
+            name="decripcion"
+            id="field_decripcion"
+            data-cy="decripcion"
+            formControlName="decripcion"
+          ></textarea>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

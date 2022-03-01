@@ -1,0 +1,14 @@
+<div class="d-flex flex-column justify-content-center">
+  <div [ngSwitch]="account !== null" class="p-auto m-auto">
+    <div class="alert alert-success display-4 backgroundcolor" *ngSwitchCase="true">
+      <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
+        >Bienvenido {{ account.firstName }} a LabDentaList</span
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="m-auto">
+      <span class="hipster img-fluid rounded text-center"></span>
+    </div>
+  </div>
+</div>

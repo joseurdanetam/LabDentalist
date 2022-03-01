@@ -1,0 +1,131 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cita-heading" data-cy="CitaCreateUpdateHeading" jhiTranslate="labDentalistApp.cita.home.createOrEditLabel">
+        Create or edit a Cita
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="labDentalistApp.cita.fechaEmison" for="field_fechaEmison">Fecha Emison</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaEmison"
+              data-cy="fechaEmison"
+              type="datetime-local"
+              class="form-control"
+              name="fechaEmison"
+              formControlName="fechaEmison"
+              placeholder="YYYY-MM-DD HH:mm"
+              [readonly]="true"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="labDentalistApp.cita.fechaCita" for="field_fechaCita">Fecha Cita</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaCita"
+              data-cy="fechaCita"
+              type="datetime-local"
+              min="2022-03-02"
+              class="form-control"
+              name="fechaCita"
+              formControlName="fechaCita"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="labDentalistApp.cita.descripcion" for="field_descripcion">Descripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="descripcion"
+            id="field_descripcion"
+            data-cy="descripcion"
+            formControlName="descripcion"
+          />
+
+          <div
+            *ngIf="
+              editForm.controls['descripcion'].invalid &&
+              (editForm.controls['descripcion'].dirty || editForm.controls['descripcion'].touched)
+            "
+            class="alert alert-danger float-start"
+          >
+            <fa-icon icon="exclamation-triangle"></fa-icon> La descripción no puede estar vacia.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_user">Profesional</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.dni }} {{ userOption.firstName }} {{ userOption.lastName }}
+            </option>
+          </select>
+          <div
+            *ngIf="editForm.controls['user'].invalid && (editForm.controls['user'].dirty || editForm.controls['user'].touched)"
+            class="alert alert-danger float-start"
+          >
+            <fa-icon icon="exclamation-triangle"></fa-icon> No se ha seleccionado ningún profesional.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="labDentalistApp.cita.cliente" for="field_cliente">Cliente</label>
+          <select class="form-control" id="field_cliente" data-cy="cliente" name="cliente" formControlName="cliente">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clienteOption.id === editForm.get('cliente')!.value?.id ? editForm.get('cliente')!.value : clienteOption"
+              *ngFor="let clienteOption of clientesSharedCollection; trackBy: trackClienteById"
+            >
+              {{ clienteOption.dni }} {{ clienteOption.apellido }} {{ clienteOption.nombre }}
+            </option>
+          </select>
+          <div
+            *ngIf="editForm.controls['cliente'].invalid && (editForm.controls['cliente'].dirty || editForm.controls['cliente'].touched)"
+            class="alert alert-danger float-start"
+          >
+            <fa-icon icon="exclamation-triangle"></fa-icon> No se ha seleccionado ningún cliente.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<br /><br /><br /><br /><br />
+<div class="row justify-content-center">
+  <div class="col-8">
+    <jhi-calendar-cita-component></jhi-calendar-cita-component>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{
+  "name": "Cita",
+  "fields": [
+    {
+      "fieldName": "fechaEmison",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "fechaCita",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "intervencion",
+      "otherEntityRelationshipName": "cita",
+      "relationshipName": "operaciones"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "citas",
+      "relationshipName": "cliente"
+    }
+  ],
+  "entityTableName": "cita",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220131120702"
+}

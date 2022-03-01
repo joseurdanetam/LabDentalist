@@ -1,0 +1,16 @@
+{
+  "name": "LabDentalist",
+  "short_name": "LabDentalist",
+  "icons": [
+    {
+      "src": "./content/images/Dentalist.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#e0e0e0",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait"
+}

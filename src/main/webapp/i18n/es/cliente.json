@@ -1,0 +1,36 @@
+{
+  "labDentalistApp": {
+    "cliente": {
+      "home": {
+        "title": "Clientes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Cliente",
+        "createOrEditLabel": "Crear o editar Cliente",
+        "notFound": "Ningún Clientes encontrado"
+      },
+      "created": "Un nuevo Cliente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Cliente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Cliente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar al Cliente con ID: {{ id }}?"
+      },
+      "detail": {
+        "title": "Cliente"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "apellido": "Apellido",
+      "dni": "Dni",
+      "sexo": "Sexo",
+      "edad": "Fecha de nacimiento:",
+      "email": "Email",
+      "telefono": "Teléfono",
+      "direccion": "Dirección",
+      "observacion": "Observaciones",
+      "operaciones": "Operaciones",
+      "facturas": "Facturas",
+      "citas": "Citas",
+      "recetas": "Recetas"
+    }
+  }
+}

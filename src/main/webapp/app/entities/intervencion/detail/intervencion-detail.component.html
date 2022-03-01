@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="intervencion">
+      <h2 data-cy="intervencionDetailsHeading"><span jhiTranslate="labDentalistApp.intervencion.detail.title">Intervencion</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ intervencion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.intervencion.titulo">Titulo</span></dt>
+        <dd>
+          <span>{{ intervencion.titulo }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.intervencion.precioUnitario">Precio Unitario</span></dt>
+        <dd>
+          <span>{{ intervencion.precioUnitario }}</span>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.intervencion.cita">Cita</span></dt>
+        <dd>
+          <div *ngIf="intervencion.cita">
+            <a [routerLink]="['/cita', intervencion.cita?.id, 'view']">{{ intervencion.cita?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.intervencion.factura">Factura</span></dt>
+        <dd>
+          <div *ngIf="intervencion.factura">
+            <a [routerLink]="['/factura', intervencion.factura?.id, 'view']">{{ intervencion.factura?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="labDentalistApp.intervencion.cliente">Cliente</span></dt>
+        <dd>
+          <div *ngIf="intervencion.cliente">
+            <a [routerLink]="['/cliente', intervencion.cliente?.id, 'view']">{{ intervencion.cliente?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/intervencion', intervencion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

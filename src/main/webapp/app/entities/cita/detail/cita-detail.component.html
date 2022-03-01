@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cita">
+      <h2 data-cy="citaDetailsHeading"><span jhiTranslate="labDentalistApp.cita.detail.title">Cita</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <div class="row justify-content-center">
+        <div class="col-1 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Paciente</span>
+        </div>
+        <div class="col-4 p-2 border border-blue">{{ cita.cliente?.nombre }} {{ cita.cliente?.apellido }}</div>
+        <div class="col-1 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Sexo</span>
+        </div>
+        <div class="col-2 p-2 border border-blue">
+          {{ cita.cliente?.sexo }}
+        </div>
+        <div class="col-2 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Fecha nacimiento</span>
+        </div>
+        <div class="col-2 p-2 border border-blue">
+          <span class="edad">{{ cita.cliente?.edad }}</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-2 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Observaciones</span>
+        </div>
+        <div class="col-10 p-2 border border-blue">
+          {{ cita.cliente?.observacion }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-2 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Descripción</span>
+        </div>
+        <div class="col-10 p-2 border border-blue">
+          {{ cita?.descripcion }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-3 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Emisión de la cita</span>
+        </div>
+        <div class="col-3 p-2 border border-blue">
+          {{ cita?.fechaEmison | formatMediumDatetime }}
+        </div>
+        <div class="col-3 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Día de la cita</span>
+        </div>
+        <div class="col-3 p-2 border border-blue">
+          {{ cita?.fechaCita | formatMediumDatetime }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-2 p-2 border border-blue bg-primary bg-gradient">
+          <span class="text-dark font-weight-bold">Profesional</span>
+        </div>
+        <div class="col-10 p-2 border border-blue">{{ cita.user?.firstName }} {{ cita.user?.lastName }}</div>
+      </div>
+      <br /><br /><br />
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cita', cita.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

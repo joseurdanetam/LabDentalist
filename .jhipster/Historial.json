@@ -1,0 +1,23 @@
+{
+  "name": "Historial",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "historial",
+      "relationshipName": "cliente",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "historial",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220131120704"
+}

@@ -1,0 +1,65 @@
+{
+  "name": "Factura",
+  "fields": [
+    {
+      "fieldName": "numeroFactura",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fechaEmision",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "tipoPago",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaVencimiento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "decripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subtotal",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "importePagado",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "importeAPagar",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "intervencion",
+      "otherEntityRelationshipName": "factura",
+      "relationshipName": "operaciones"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "facturas",
+      "relationshipName": "cliente"
+    }
+  ],
+  "entityTableName": "factura",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220131120705"
+}

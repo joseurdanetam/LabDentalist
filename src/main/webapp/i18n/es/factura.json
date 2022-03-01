@@ -1,0 +1,35 @@
+{
+  "labDentalistApp": {
+    "factura": {
+      "home": {
+        "title": "Facturas",
+        "intervencion": "Intervenciones",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Factura",
+        "createOrEditLabel": "Crear o editar Factura",
+        "notFound": "Ningún Facturas encontrado"
+      },
+      "created": "Un nuevo Factura ha sido creado con el identificador {{ param }}",
+      "updated": "Un Factura ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Factura ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Factura {{ id }}?"
+      },
+      "detail": {
+        "title": "Factura"
+      },
+      "id": "ID",
+      "numeroFactura": "Numero Factura",
+      "fechaEmision": "Fecha Emision",
+      "tipoPago": "Tipo Pago",
+      "fechaVencimiento": "Fecha Vencimiento",
+      "descripcion": "Descripcion",
+      "subtotal": "Pago a plazos",
+      "total": "Total",
+      "importePagado": "Importe Pagado",
+      "importeAPagar": "Importe A Pagar",
+      "operaciones": "Operaciones",
+      "cliente": "Paciente"
+    }
+  }
+}

@@ -1,0 +1,234 @@
+<div class="row justify-content-end">
+  <div class="col-11">
+    <!-- Info del paciente-->
+    <div *ngIf="historial">
+      <h2 data-cy="historialDetailsHeading">
+        <span jhiTranslate="labDentalistApp.historial.detail.title">Historial</span
+        ><span> de {{ historial.cliente?.nombre }} {{ historial.cliente?.apellido }} {{ historial.cliente?.dni }}</span>
+      </h2>
+      <hr />
+      <jhi-alert-error></jhi-alert-error>
+      <jhi-alert></jhi-alert>
+
+      <h2>CITAS</h2>
+      <!--CITAS-->
+      <div class="alert alert-warning" id="no-result" *ngIf="citas?.length === 0">
+        <span jhiTranslate="labDentalistApp.cita.home.notFound">No citas found</span>
+      </div>
+
+      <div class="table-responsive" id="entities" *ngIf="citas && citas.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr jhiSort [(predicate)]="predicateCita" [(ascending)]="ascendingCita" (sortChange)="loadTables()">
+              <th scope="col" jhiSortBy="fechaEmison">
+                <span jhiTranslate="labDentalistApp.cita.fechaEmison">Fecha Emison</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="fechaCita">
+                <span jhiTranslate="labDentalistApp.cita.fechaCita">Fecha Cita</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="descripcion">
+                <span jhiTranslate="labDentalistApp.cita.descripcion">Descripcion</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="user.id">
+                <span>Profesional</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cita of citas" data-cy="entityTable">
+              <td>{{ cita.fechaEmison }}</td>
+              <td>{{ cita.fechaCita }}</td>
+              <td>{{ cita.descripcion }}</td>
+              <td>
+                <div *ngIf="cita.user">
+                  <span>{{ cita.user?.firstName }} {{ cita.user?.lastName }}</span>
+                </div>
+              </td>
+              <td class="text-right">
+                <div class="btn-group">
+                  <button type="submit" [routerLink]="['/cita', cita.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="citas && citas.length > 0">
+        <div class="row justify-content-center">
+          <jhi-item-count [params]="{ page: pageCita, totalItems: totalItemsCita, itemsPerPage: itemsPerPage }"> </jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+          <ngb-pagination
+            [collectionSize]="totalItemsCita"
+            [(page)]="ngbPaginationPageCita"
+            [pageSize]="itemsPerPage"
+            [maxSize]="5"
+            [rotate]="true"
+            [boundaryLinks]="true"
+            (pageChange)="loadTables($event)"
+          ></ngb-pagination>
+        </div>
+      </div>
+      <!--Citas-->
+
+      <h2>FACTURAS</h2>
+
+      <!--FACTURAS-->
+
+      <div class="alert alert-warning" id="no-result" *ngIf="factura?.length === 0">
+        <span jhiTranslate="labDentalistApp.factura.home.notFound">No facturas found</span>
+      </div>
+      <div class="table-responsive" id="entities" *ngIf="factura && factura.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr jhiSort [(predicate)]="predicateFactura" [(ascending)]="ascendingFactura" (sortChange)="loadtableFactura()">
+              <th scope="col" jhiSortBy="numeroFactura">
+                <span jhiTranslate="labDentalistApp.factura.numeroFactura">Nº Factura</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="fechaEmision">
+                <span jhiTranslate="labDentalistApp.factura.fechaEmision">Fecha Emison</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="decripcion">
+                <span jhiTranslate="labDentalistApp.factura.descripcion">Descripcion</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="total">
+                <span jhiTranslate="labDentalistApp.factura.total">Total</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let factura of factura" data-cy="entityTable">
+              <td>{{ factura.numeroFactura }}</td>
+              <td>{{ factura.fechaEmision }}</td>
+              <td>{{ factura.decripcion }}</td>
+              <td>{{ factura.total }}</td>
+              <td class="text-right">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/factura', factura.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="factura && factura.length > 0">
+        <div class="row justify-content-center">
+          <jhi-item-count [params]="{ page: pageFactura, totalItems: totalItemsFactura, itemsPerPage: itemsPerPage }"> </jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+          <ngb-pagination
+            [collectionSize]="totalItemsFactura"
+            [(page)]="ngbPaginationPageFactura"
+            [pageSize]="itemsPerPage"
+            [maxSize]="5"
+            [rotate]="true"
+            [boundaryLinks]="true"
+            (pageChange)="loadtableFactura($event)"
+          >
+          </ngb-pagination>
+        </div>
+      </div>
+      <!--facturas-->
+
+      <!--Tabla de Recetas-->
+      <h2>Recetas</h2>
+      <div class="alert alert-warning" id="no-result" *ngIf="recetas?.length === 0">
+        <span jhiTranslate="labDentalistApp.receta.home.notFound">No recetas found</span>
+      </div>
+      <div class="table-responsive" id="entities" *ngIf="recetas && recetas.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr jhiSort [(predicate)]="predicateReceta" [(ascending)]="ascendingReceta" (sortChange)="loadTableReceta()">
+              <th scope="col" jhiSortBy="fechaEmison">
+                <span jhiTranslate="labDentalistApp.receta.fechaEmision">Fecha Emison</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="fechareceta">
+                <span jhiTranslate="labDentalistApp.receta.fechareceta">Fecha receta</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="descripcion">
+                <span jhiTranslate="labDentalistApp.receta.descripcion">Descripcion</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col" jhiSortBy="cliente.id">
+                <span>Profesional</span>
+                <fa-icon icon="sort"></fa-icon>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let receta of recetas" data-cy="entityTable">
+              <td>{{ receta.fechaEmision }}</td>
+              <td>{{ receta.fechaVencimiento }}</td>
+              <td>{{ receta.descripcion }}</td>
+              <td>
+                <div *ngIf="receta.cliente">
+                  <span>{{ receta.cliente?.nombre }} {{ receta.cliente?.apellido }}</span>
+                </div>
+              </td>
+              <td class="text-right">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/receta', receta.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="recetas && recetas.length > 0">
+        <div class="row justify-content-center">
+          <jhi-item-count [params]="{ page: pageReceta, totalItems: totalItemsReceta, itemsPerPage: itemsPerPage }"> </jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+          <ngb-pagination
+            [collectionSize]="totalItemsReceta"
+            [(page)]="ngbPaginationPageReceta"
+            [pageSize]="itemsPerPage"
+            [maxSize]="5"
+            [rotate]="true"
+            [boundaryLinks]="true"
+            (pageChange)="loadTableReceta($event)"
+          ></ngb-pagination>
+        </div>
+      </div>
+      <!-- FIN RECETAS-->
+
+      <!--Botones-->
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+    </div>
+  </div>
+</div>

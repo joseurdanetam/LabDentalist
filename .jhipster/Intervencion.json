@@ -1,0 +1,43 @@
+{
+  "name": "Intervencion",
+  "fields": [
+    {
+      "fieldName": "titulo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "precioUnitario",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cita",
+      "otherEntityRelationshipName": "operaciones",
+      "relationshipName": "cita"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "factura",
+      "otherEntityRelationshipName": "operaciones",
+      "relationshipName": "factura"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "operaciones",
+      "relationshipName": "cliente"
+    }
+  ],
+  "entityTableName": "intervencion",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220131120706"
+}

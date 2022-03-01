@@ -1,0 +1,27 @@
+{
+  "labDentalistApp": {
+    "intervencion": {
+      "home": {
+        "title": "Intervenciones",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Intervención",
+        "notFound": "Ningúna Intervención encontrada"
+      },
+      "created": "Un nuevo Intervención ha sido creado con el identificador {{ param }}",
+      "updated": "Un Intervención ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Intervención ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Intervención {{ id }}?"
+      },
+      "detail": {
+        "title": "Intervención"
+      },
+      "id": "ID",
+      "title": "Titulo",
+      "precioUnitario": "Precio Unitario",
+      "cita": "Cita",
+      "factura": "Factura",
+      "cliente": "Cliente"
+    }
+  }
+}

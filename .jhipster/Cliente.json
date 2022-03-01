@@ -1,0 +1,77 @@
+{
+  "name": "Cliente",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellido",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dni",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "edad",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observacion",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "intervencion",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "operaciones"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "factura",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "facturas"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "cita",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "citas"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "receta",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "recetas"
+    }
+  ],
+  "entityTableName": "cliente",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220131120703"
+}

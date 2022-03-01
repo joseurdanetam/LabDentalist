@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LabDentalistApp<lab-dentalist>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.labdentalist.app.LabDentalistApp",
+            "projectName": "lab-dentalist",
+            "args": ""
+        }
+    ]
+}

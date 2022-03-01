@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql, mariadb"/>
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+    <property name="clobType" value="clob" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
+    <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
+    <property name="datetimeType" value="datetime(6)" dbms="mysql, mariadb"/>
+    <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120702_added_entity_Cita.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120703_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120704_added_entity_Historial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120705_added_entity_Factura.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120706_added_entity_Intervencion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120707_added_entity_Receta.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220131120702_added_entity_constraints_Cita.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120704_added_entity_constraints_Historial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120705_added_entity_constraints_Factura.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120706_added_entity_constraints_Intervencion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131120707_added_entity_constraints_Receta.xml" relativeToChangelogFile="false"/>
+    <!-- NEWS -->
+    <include file="config/liquibase/changelog/20220131153250_modified_User_added_columns.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131154150_modified_Cita_added_column.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131154250_added_entity_constraints_Cita.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131155050_modified_Intervencion_added_column.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131155250_added_entity_constraints_Intervencion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131155450_modified_Receta_added_column.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220131155550_added_entity_constraints_Receta.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

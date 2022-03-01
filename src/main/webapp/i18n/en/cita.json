@@ -1,0 +1,30 @@
+{
+  "labDentalistApp": {
+    "cita": {
+      "home": {
+        "title": "Citas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Appointment",
+        "createOrEditLabel": "Create or edit a Appointments",
+        "notFound": "No Citas found"
+      },
+      "created": "A new Cita is created with identifier {{ param }}",
+      "updated": "A Cita is updated with identifier {{ param }}",
+      "deleted": "A Cita is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Appointment {{ id }}?"
+      },
+      "detail": {
+        "title": "Cita"
+      },
+      "id": "ID",
+      "professional": "Professional",
+      "pendingAppointment": "Pending Appointments",
+      "fechaEmison": "Date of Issue",
+      "fechaCita": "Appointment Date",
+      "descripcion": "Description",
+      "operaciones": "Operaciones",
+      "cliente": "Client"
+    }
+  }
+}

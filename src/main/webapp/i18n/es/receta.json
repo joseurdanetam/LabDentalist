@@ -1,0 +1,29 @@
+{
+  "labDentalistApp": {
+    "receta": {
+      "home": {
+        "title": "Recetas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Receta",
+        "createOrEditLabel": "Crear o editar Receta",
+        "notFound": "Ningún Recetas encontrado"
+      },
+      "created": "Un nuevo Receta ha sido creado con el identificador {{ param }}",
+      "updated": "Un Receta ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Receta ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Receta {{ id }}?"
+      },
+      "detail": {
+        "title": "Receta"
+      },
+      "id": "ID",
+      "numeroReceta": "Numero Receta",
+      "fechaEmision": "Fecha Emision",
+      "fechaVencimiento": "Fecha Vencimiento",
+      "descripcion": "Descripcion",
+      "fechareceta": "Fecha Receta",
+      "cliente": "Paciente"
+    }
+  }
+}

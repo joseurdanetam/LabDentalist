@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="factura">
+      <h2 class="text-center text-uppercase font-weight-bold mb-5" jhiTranslate="labDentalistApp.factura.detail.title">Factura</h2>
+
+      <hr class="hr mb-0 pb-0" />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <div class="row justify-content-center"></div>
+      <div id="app" class="col-12">
+        <div class="row my-3">
+          <div class="col-10">
+            <h1>LabDentaList</h1>
+            <p>C/Miguel yuste 12, 3º Derecha, Madrid Madrid, 28042</p>
+          </div>
+          <div class="col-2">
+            <img class="img-fluid" src="./../../../content/images/Dentalist.png" />
+          </div>
+        </div>
+
+        <hr class="hr mb-0 pb-0" />
+
+        <div class="row fact-info mt-3">
+          <div class="col-4">
+            <h5 class="font-weight-bold">Facturar a:</h5>
+            <p>{{ factura.cliente?.nombre }} {{ factura.cliente?.apellido }}</p>
+          </div>
+          <div class="col-4">
+            <h5 class="font-weight-bold">N° de factura:</h5>
+            <h5 class="font-weight-bold">Fecha:</h5>
+            <h5 class="font-weight-bold">Fecha de vencimiento:</h5>
+          </div>
+          <div class="col-4">
+            <h5>{{ factura.numeroFactura }}</h5>
+            <p>{{ factura.fechaEmision }}</p>
+            <p>{{ factura.fechaVencimiento }}</p>
+          </div>
+        </div>
+
+        <div class="row my-2">
+          <table class="table table-borderless factura">
+            <tfoot>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Pago a plazos</th>
+                <th>{{ factura.subtotal }}</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Total Factura</th>
+                <th>{{ factura.total }}</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <hr class="hr" />
+        <div class="cond row">
+          <div class="col-12 mt-3 text-center">
+            <h4>Condiciones y formas de pago</h4>
+            <p>El pago se debe realizar en un plazo de 15 dias.</p>
+            <p>
+              Banco Banreserva
+              <br />
+              IBAN: ES 28 0075 0022 00 11 2222 3333
+              <br />
+              Código SWIFT: BPDODOS789
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-5 text-center">
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/factura', factura.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+        <button type="button" onclick="print()" class="btn btn-primary"><fa-icon icon="book"></fa-icon>Imprimir</button>
+      </div>
+    </div>
+  </div>
+</div>
